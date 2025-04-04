@@ -5,16 +5,15 @@ import './App.css'
 
 function Movies({movie}){
   const [liked , setLiked] = useState(false)
- 
+  const [count , setCount] = useState(0)
+
   return (
-    <div>
-      {movie}
+    <div onClick={() => {setCount(count + 1)}}> Movie named { movie}
       <button onClick={
-        () => {
-          setLiked(true)
-        }
+        () => {setLiked(true)}
       }
       >{ liked? 'liked' : 'like'}</button>
+      <p>{count>0 ? count : ""}</p>
     </div>
   )
 }
