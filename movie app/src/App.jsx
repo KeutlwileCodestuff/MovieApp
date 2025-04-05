@@ -1,31 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
 
-function Movies({movie}){
-  const [liked , setLiked] = useState(false)
-  const [count , setCount] = useState(0)
+function App(){
 
   return (
-    <div onClick={() => {setCount(count + 1)}}> Movie named { movie}
-      <button onClick={
-        () => {setLiked(true)}
-      }
-      >{ liked? 'liked' : 'like'}</button>
-      <p>{count>0 ? count : ""}</p>
-    </div>
-  )
-}
+    <main>
+      <div className='wrapper'>
+        <header>
+          <h1>We bring <span className='text-gradient'> Great Movies</span> to watch!</h1>
+        </header>
+     </div>
+    </main>
 
-function App() {
-  return (
-    <div>
-      <Movies movie= "one"/>
-      <Movies movie= "2"/>
-      <Movies movie= "3"/>
-
-    </div>
   )
 }
 
