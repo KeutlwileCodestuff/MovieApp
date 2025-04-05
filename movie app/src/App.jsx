@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Search from './components/search'
 
 function App(){
+  const [searchTerm , setSearchTerm] = useState()
 
   return (
     <main>
@@ -13,7 +14,7 @@ function App(){
           <img src="/src/images/image1.png" alt="heros img" />
           <h1>We bring <span className='text-gradient'> Great Movies</span> to watch!</h1>
         </header>
-        <Search/>
+        <Search  name="zombies"/>
      </div>
     </main>
 
