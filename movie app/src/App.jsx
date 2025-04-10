@@ -14,15 +14,27 @@ headers: {
 function App(){
   const [searchTerm , setSearchTerm] = useState('');
   const [errorMsg , setErrorMsg ] = useState('');
-  const [movies , setMovies] = useState('');
+  const [movies , setMovies] = useState([]);
 
   async function getMovies(){
+    setErrorMsg('');
+    setMovies([]);
     try{
       const end_point = `${URL}`;
       const response = await fetch(URL, options);
-      console.log(response.json());
-      // setMovies(response.json());
-      console.log(movies);
+
+      if(!response.ok){
+        throw new Error('Failed to load movies.')
+      }
+      const data = await response.json();
+
+      if(data.Response === 'False'){
+        setErrorMsg('Failed to load movies.');
+        setMovies([]);
+        return;
+      }
+      setMovies(data.results);
+      console.log(data.results);
       
     }catch(error){
       setErrorMsg(`Error getting movies: ${error}`);
@@ -46,8 +58,16 @@ function App(){
         <Search  searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </header>
 
-        <section>
-          <p>{errorMsg}</p>
+
+        <section className='all-movies'>
+        <h2 className='mt-10' >All Movies</h2>
+
+        <ul>
+          {movies.map((movie) => (
+          <p key={movie.id} className='text-white'>{movie.title}</p>
+        ))}
+
+        </ul>
         </section>
      </div>
     </main>
