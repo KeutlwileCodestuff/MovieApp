@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MovieCard( {movie: {title , poster_path , vote_average}}){
+function MovieCard( {movie: {title , poster_path , vote_average ,original_language , release_date}}){
     console.log(`poster : ${title}`)
 
 
@@ -17,6 +17,10 @@ function MovieCard( {movie: {title , poster_path , vote_average}}){
                 <div className="rating">
                     <img src="src/images/Rating_start_icon.png" alt="" />
                     <p className=' text-white'>{vote_average.toFixed(1)}</p>
+                    <span>.</span>
+                    <p className='lang'>{original_language}</p>
+                    <span>.</span>
+                    <p className='year'>{release_date? release_date.split('-')[0] : 'N/A'}</p>
                 </div>
             </div>
         </div>
