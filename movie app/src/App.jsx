@@ -1,5 +1,6 @@
-import React, { cache, useEffect , useState } from 'react'
-import Search from './components/search'
+import React, { cache, useEffect , useState } from 'react';
+import Search from './components/search';
+import MovieCard from './components/movieCard';
 
 const URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
 const API_KEY = import.meta.env.VITE_TMDB_API_TOKEN;
@@ -64,7 +65,8 @@ function App(){
 
         <ul>
           {movies.map((movie) => (
-          <p key={movie.id} className='text-white'>{movie.title}</p>
+            <MovieCard key={movie.id}  movie={movie}/>
+         
         ))}
 
         </ul>
