@@ -1,4 +1,5 @@
 import React, { cache, useEffect , useState } from 'react';
+import { useDebounce } from 'react-use';
 import Search from './components/search';
 import MovieCard from './components/movieCard';
 
@@ -17,6 +18,10 @@ function App(){
   const [searchTerm , setSearchTerm] = useState('');
   const [errorMsg , setErrorMsg ] = useState('');
   const [movies , setMovies] = useState([]);
+  const [debouncedSearchTerm , setDebouncedSearchTerm ] = useState('');
+
+
+  useDebounce(() => setDebouncedSearchTerm(searchTerm) , 1000 , [searchTerm]  );
 
   async function getMovies(quary = ''){
 
@@ -44,8 +49,8 @@ function App(){
   }
 
   useEffect(() => {
-    getMovies(searchTerm);
-    },[searchTerm]);
+    getMovies(debouncedSearchTerm);
+    },[debouncedSearchTerm]);
 
   return (
     <main>
