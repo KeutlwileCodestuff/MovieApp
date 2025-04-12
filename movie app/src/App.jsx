@@ -2,7 +2,8 @@ import React, { cache, useEffect , useState } from 'react';
 import Search from './components/search';
 import MovieCard from './components/movieCard';
 
-const URL = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
+const BASE_URL = 'https://api.themoviedb.org/3';
+const SEARCH_ENDPOINT = 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
 const API_KEY = import.meta.env.VITE_TMDB_API_TOKEN;
 const options = {
 method: 'GET',
@@ -17,12 +18,12 @@ function App(){
   const [errorMsg , setErrorMsg ] = useState('');
   const [movies , setMovies] = useState([]);
 
-  async function getMovies(){
-    setErrorMsg('');
-    setMovies([]);
+  async function getMovies(quary = ''){
+
     try{
-      const end_point = `${URL}`;
-      const response = await fetch(URL, options);
+      const search_url = `/search/movie?query=${encodeURI(quary)}&include_adult=false&language=en-US&page=1`
+      const end_point = quary ? `${BASE_URL}${search_url}` : `${BASE_URL}/movie/popular?language=en-US&page=1`;
+      const response = await fetch(end_point, options);
 
       if(!response.ok){
         throw new Error('Failed to load movies.')
@@ -35,7 +36,6 @@ function App(){
         return;
       }
       setMovies(data.results);
-      console.log(data.results);
       
     }catch(error){
       setErrorMsg(`Error getting movies: ${error}`);
@@ -44,8 +44,8 @@ function App(){
   }
 
   useEffect(() => {
-    getMovies();
-    },[]);
+    getMovies(searchTerm);
+    },[searchTerm]);
 
   return (
     <main>

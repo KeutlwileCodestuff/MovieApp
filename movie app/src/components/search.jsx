@@ -14,4 +14,4 @@ function Search({searchTerm , setSearchTerm} ){
   )
 }
 
-export default Search
+export default Search;
