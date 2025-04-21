@@ -1,4 +1,4 @@
 [[redirects]]
 from = "/*"
-to = "amazon.html"
+to = "App.jsx"
 status = 200
