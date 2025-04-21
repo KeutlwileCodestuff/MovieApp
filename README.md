@@ -1,1 +1,1 @@
-# MovieApp
+I have built this app to show case my html , tailwind , react with java script skills as well as api integration . this app using an API called 'moviedb'. It an API that allows developers to get movies metadata to display on their applications.  I have also implemented a search feature within my application
