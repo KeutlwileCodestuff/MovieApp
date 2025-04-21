@@ -1,4 +1,4 @@
 [[redirects]]
 from = "/*"
-to = "App.jsx"
+to = "movie app/src/App.jsx"
 status = 200
