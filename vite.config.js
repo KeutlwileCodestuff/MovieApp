@@ -8,11 +8,11 @@ export default defineConfig({
     tailwindcss(),
   ],
 
-  build: {
-    rollupOptions: {
-      external: ['react-use']
-    }
-},
+//   build: {
+//     rollupOptions: {
+//       external: ['react-use']
+//     }
+// },
 }
 )
 
